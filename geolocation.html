@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, intial-sclae=1.0>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+      
+        <title>
+            Weather App
+        </title>
+    </head>
+    <body>
+        <div class="card">
+            
+            <div class="weather">
+                <h1>  Geolocation Serivces</h1>
+                <div class="div2">
+
+                    <div  class="main">
+                        
+                        <p style="margin: 0; padding:0%;">Click the button to get your coordinates.</p>
+                        
+                        <button onclick="getLocation()">Click</button>
+                        
+                        <p id="demo"></p>
+                        <p id="speed"></p>
+                        
+                        </div>
+                        <script>
+                            var x = document.getElementById("demo");
+                            var y = document.getElementById("speed");
+                            var delayInMilliseconds = 1000; 
+                            
+                function getLocation() {
+                    if (navigator.geolocation) {
+                       setInterval(function() { navigator.geolocation.getCurrentPosition(showPosition);}, delayInMilliseconds);
+          } else { 
+              x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+        
+        function showPosition(position) {
+            x.innerHTML = "Latitude: " + position.coords.latitude + 
+            "<br>Longitude: " + position.coords.longitude+ "<br>Speed: "+position.coords.speed
+              +"<br>Time: " + getTimeFromDate(position.timestamp);
+        
+    }
+    function getTimeFromDate(timestamp) {
+            return new Date(timestamp).toLocaleTimeString();
+    }
+        
+        </script>
+
+            </div>
+        </div>
+        </body>
+</html>
